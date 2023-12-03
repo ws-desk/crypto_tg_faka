@@ -1,7 +1,7 @@
 # 仅供参考和学习，勿用于生产环境
 
 # Crypto Telegram Faka
-### 一个使用Go开发的加密货币发卡机器人，带web后台
+### 一个使用Go开发的加密货币USDT发卡机器人，带web后台
 
 
 ### 项目特点
@@ -17,7 +17,8 @@
 
 
 # DEMO
-https://user-images.githubusercontent.com/119736684/206887487-9ad4ebcc-5883-4f6c-aa59-0d70b1737327.mp4
+https://github.com/yuimoi/crypto_tg_faka/assets/119736684/55ae1db9-f5f5-4cc8-ba2d-b81bffd83a57
+
 
 
 
@@ -41,17 +42,24 @@ cmd         # 程序入口
 
 
 # 使用方法
-- 后台页面在release压缩包的`wwwroot`中，将该目录下的文件放到nginx网站根目录，并设置反向代理指向程序运行端口
+- 主程序可以自己clone下来编译，也可以直接下载编译好的版本（linux需要给权限运行`chmod +x ./cmd/crypto_tg_faka.go`）
+- 后台页面在[`build`](https://github.com/yuimoi/crypto_tg_faka/releases/tag/release)压缩包的`wwwroot`文件夹里面，将`wwwroot`目录下的文件放到nginx网站根目录，并设置反向代理指向程序运行端口
 - 配置.env下的配置文件`config.ini`
 - 把的程序放到与`.env`、`templates`等同一目录下，直接运行程序
 - 正常启动程序后，使用管理员账号回复机器人`/login`即可生成一次性登录地址（配置文件填写域名后该登录链接便会附带域名）
+
+# 程序运行参数
+    --port 端口号 默认8082
 
 # Nginx反向代理配置(端口写自己的)
     location ~ ^/(api) {
         proxy_pass http://127.0.0.1:8082;
     }
 
-
+# 有问题反馈
+在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流
+* tg: [@nulllllllll](https://t.me/nulllllllll)
+* 
 ## 灵感来自以下的项目
 
 * [epusdt](https://github.com/assimon/epusdt)
