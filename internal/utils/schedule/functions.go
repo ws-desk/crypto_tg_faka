@@ -345,7 +345,7 @@ func startUpdateExchangeRate() {
 		}
 		exchangeRate.ExchangeRate[config.Currency(targetCurrency)] = result.Data[0].Price
 	}
-	exchangeRate.UpdateTime = time.LoadLocation("Asia/Shanghai").Now().Format("2006-01-02 15:04")
+	exchangeRate.UpdateTime = time.Now().In(config.Loc).Format("2006-01-02 15:04")
 
 	// 内存
 	config.ExchangeRateData = exchangeRate

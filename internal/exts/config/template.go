@@ -20,8 +20,8 @@ const (
 )
 
 func timestampToDatetime(timestamp int64) string {
-	t := time.Unix(timestamp, 0)           // Converts Unix timestamp to time.Time
-	return t.Format("2006-01-02 15:04:05") // Formats the time in a human-readable form
+	t := time.Unix(timestamp, 0)                   // Converts Unix timestamp to time.Time
+	return t.In(Loc).Format("2006-01-02 15:04:05") // Formats the time in a human-readable form
 }
 
 func LoadTemplates() {

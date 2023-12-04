@@ -1,6 +1,9 @@
 package config
 
-import "gopay/internal/utils/functions"
+import (
+	"gopay/internal/utils/functions"
+	"time"
+)
 
 func LoadAllConfig() {
 	LoadSiteConfig()
@@ -10,6 +13,8 @@ func LoadAllConfig() {
 	SetSiteConfig(*GetSiteConfig())
 
 	LoadTemplates()
+
+	Loc, _ = time.LoadLocation("Asia/Shanghai")
 }
 
 var configBaseDir = functions.GetExecutableDir() + "/.env"
@@ -30,3 +35,5 @@ type Proxy struct {
 type Body struct {
 	Value map[string]interface{}
 }
+
+var Loc *time.Location

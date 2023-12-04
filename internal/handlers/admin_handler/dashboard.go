@@ -181,7 +181,7 @@ func DashboardChart(c *gin.Context) {
 		totalOrderCount = totalOrderCount + orderCountTemp
 
 		// x坐标轴标签
-		data.XAxis.Data = append(data.XAxis.Data, dayStart.Format("01-02"))
+		data.XAxis.Data = append(data.XAxis.Data, dayStart.In(config.Loc).Format("01-02"))
 	}
 	data.Series = append(data.Series, orderPriceSumSeries, orderCountSeries)
 

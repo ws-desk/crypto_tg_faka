@@ -233,7 +233,7 @@ func PaidOrder(update tgbotapi.Update) {
 
 	var rows [][]tgbotapi.InlineKeyboardButton
 	for _, paidOrder := range paidOrders {
-		buttonText := fmt.Sprintf("%s %s %s%s ", time.Unix(paidOrder.CreateTime, 0).Format("2006-01-02"), paidOrder.Product.Name, paidOrder.Price, paidOrder.Currency)
+		buttonText := fmt.Sprintf("%s %s %s%s ", time.Unix(paidOrder.CreateTime, 0).In(config.Loc).Format("2006-01-02"), paidOrder.Product.Name, paidOrder.Price, paidOrder.Currency)
 		row := []tgbotapi.InlineKeyboardButton{tgbotapi.NewInlineKeyboardButtonData(buttonText, GetPaidOrderResultPrefix+paidOrder.ID.String())}
 		rows = append(rows, row)
 	}
