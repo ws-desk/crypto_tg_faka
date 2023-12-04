@@ -65,7 +65,7 @@ func startCheckTransaction(network string) {
 	}
 
 	// 更新余额,不要使用tx的事务，因为会rollback
-	// 也不能单独使用db.DB.Exec，因为会未知的阻塞整个函数
+	// 也不能单独使用db.DB.Exec，因为同时操作wallet，数据库会死锁
 	// defer也不能放在defer tx.Rollback()的后面，否则会在tx未提交的过程中执行
 	// 也不能直接defer function1(var),这样获取到的参数是当时的变量
 	var relatedWalletsForUpdateBalance []models.Wallet
@@ -345,7 +345,7 @@ func startUpdateExchangeRate() {
 		}
 		exchangeRate.ExchangeRate[config.Currency(targetCurrency)] = result.Data[0].Price
 	}
-	exchangeRate.UpdateTime = time.Now().Format("2006-01-02 15:04")
+	exchangeRate.UpdateTime = time.LoadLocation("Asia/Shanghai").Now().Format("2006-01-02 15:04")
 
 	// 内存
 	config.ExchangeRateData = exchangeRate
