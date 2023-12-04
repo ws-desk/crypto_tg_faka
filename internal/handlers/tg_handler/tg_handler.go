@@ -41,6 +41,7 @@ func LoginCommand(update tgbotapi.Update) {
 	text := fmt.Sprintf("<a href=\"%s\">一次性登录地址(60秒内有效)</a>", loginUrl)
 	msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
 	msg.ParseMode = "HTML"
+	msg.DisableWebPagePreview = true
 	sentMsg, err := tg_bot.Bot.Send(msg)
 	if err != nil {
 		//log.Println("Error sending message:", err)

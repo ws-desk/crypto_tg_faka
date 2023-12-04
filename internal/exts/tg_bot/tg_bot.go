@@ -55,6 +55,7 @@ func SendAdmin(msgText string) {
 
 	msg := tgbotapi.NewMessage(config.SiteConfig.AdminTGID, msgText)
 	msg.DisableWebPagePreview = true
+	msg.ParseMode = "HTML"
 	Bot.Send(msg)
 }
 func DeleteMsg(chatID int64, msgID int) error {
