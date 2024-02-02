@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  nginx_usdt:
+#    depends_on:
+#     - swoole
+    image: "openresty/openresty" 
+    container_name: php_usdt_nginx
+    volumes:
+      - ./nginx/conf:/usr/local/openresty/nginx/conf:rw
+      - ./nginx/vhost:/etc/nginx/vhost:rw
+      - ./ssl:/etc/nginx/ssl:rw
+      - ./nginx/logs:/var/nginx/logs:rw
+      - ./wwwroot:/var/nginx/html/wwwroot:rw
+    network_mode: host
+    #ports:
+     # - "8099:8099"
+    
+    
+    working_dir: /var/nginx/wwwroot
+    restart: always
